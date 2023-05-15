@@ -1,0 +1,10 @@
+
+@font-face {
+    font-family: 'Cyber-russia-light';
+    src: url("../fonts/Conthrax-Font/Conthrax Light.otf");
+}
+
+.cyber-rus-thin {
+    font-family: Cyber-russia-light, serif !important;
+    font-weight: 500;
+}

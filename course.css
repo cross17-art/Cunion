@@ -1,0 +1,142 @@
+
+body {
+    background-color: #0b0c22;
+    /*font-family: monospace;*/
+    color: #fff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+h1 {
+    font-size: 20px;
+    margin-bottom: 20px !important;
+}
+
+h2 {
+    font-size: 15px;
+}
+
+.on-center {
+    display: block;
+    margin: auto;
+    width: fit-content;
+}
+
+.logo {
+    height: 80px;
+    width: 152.86px;
+    display: block;
+    margin: auto;
+}
+
+.main-title {
+
+}
+
+.title {
+
+}
+
+.form {
+
+}
+
+.input-group {
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+}
+
+input {
+    display: block;
+    margin: 5px 0px 5px 0px;
+    width: 100%;
+    background-color: inherit;
+    border: 0px;
+    border-bottom: 1px solid #ffffffb0;
+    padding-bottom: 9px;
+    color: #ffffffb0;
+}
+
+input:focus-visible{
+    outline: none;
+    border-bottom: 2px solid #dcdef1;
+}
+
+input::placeholder {
+    color: #ffffffb0;
+}
+
+
+label {
+    display: block;
+    text-align: left;
+    font-size: 12px
+}
+
+ul {
+    text-align: left;
+}
+
+li {
+    list-style: none;
+    padding: 5px 5px 5px 5px
+}
+
+.section {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px !important;
+}
+
+.partners {
+
+}
+
+.partner-image {
+    height: 40px;
+    padding: 10px 5px 11px 5px
+}
+
+
+.section {
+    margin: 30px 0px 30px 0px;
+    margin: auto;
+    margin-bottom: 80px;
+}
+
+.tomas-logo {
+    max-width: 340px;
+    margin-top: 30px;
+}
+
+
+.form {
+    background-color: #181f70;
+    border-radius: 20px;
+    padding: 10px 5px 10px 5px;
+    width: 80%;
+    max-width: 360px;
+    padding-bottom: 20px;
+
+}
+
+.registration-button {
+    display: block;
+    margin: 10px 5px 10px 5px;
+    background: #5db0ff;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+    width: 80%;
+    margin: auto;
+    border: none;
+    min-height: 35px;
+    margin-top: 20px;
+}
+
+
+.footer {
+    margin-top: 100px;
+}

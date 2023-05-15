@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+
+Host: https://www.cunion.io
+
+Sitemap: https://www.cunion.io/sitemap_index.xml

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HeartBit Kucoin</title>
+    <div id="state" style="width: auto;">
+        <div info></div>
+        <div sockets style="background: repeat url('poligon.png'); height: 1000px"></div>
+    </div>
+</head>
+
+
+
+<body >
+</body>
+</html>
+
+
+<style>
+
+    [info]{
+        display: table;
+        border: 2px solid red;
+    }
+
+    .socket{
+        display: block !important;
+        border: 2px solid chartreuse;
+        background-color: #00E0C5;
+        width: 270px;
+        /*height: 250px;*/
+        padding: 10px 10px 10px 10px;
+        float: left;
+        margin: 15px;
+        opacity: 0.9;
+        transform: scale(1);
+        transition: transform 0.2s;
+    }
+
+    [sockets]{
+        display: table;
+        border: 2px solid blue;
+    }
+
+    h1{
+        font-size: 10px;
+    }
+
+    h2{
+        font-size: 15px;
+    }
+
+    li{
+        font-size: 12px;
+    }
+</style>
+<script>
+    let timer = setInterval(() => {
+        fetch("https://cunion.io/client/copy_server_api/kucoin/get_kucoin_socket_state.php").then((response)=>{
+            return response.json();
+        }).then((data) => {
+            console.log(data);
+            ProceedSocketState(data);
+        })
+    }, 1000)
+
+
+    var lastDate = Date.now();
+
+    ProceedSocketState = (data) => {
+
+        if(data.date !== lastDate){
+            lastDate = data.date;
+            let state = document.querySelector("#state");
+            let info = document.querySelector("[info]");
+            info.innerHTML = data.id + " | " + data.date;
+
+            document.querySelector("title").innerHTML = data.id + " | HeartBeet Kucoin | ";
+
+            let sockets = document.querySelector("#state > [sockets]");
+            sockets.innerHTML = "";
+
+            let socketStateArray = JSON.parse(data.state);
+            console.log(socketStateArray);
+            socketStateArray.forEach((socketState) => {
+                let socketElement = document.querySelector("[templateBlock] > [socket-template]").cloneNode(true);
+                socketElement.querySelector("[masterEmail]").innerHTML = socketState.master_email;
+                socketState.followers.forEach((follower) => {
+                    let followerList = socketElement.querySelector('[followerList]');
+                    let followerElement = followerList.querySelector('[follower]').cloneNode(true);
+                    followerElement.innerHTML = follower.followerEmail + " | " + follower.scale
+                    followerElement.style.display = 'block';
+                    followerList.appendChild(followerElement);
+
+                })
+
+                sockets.appendChild(socketElement);
+                socketElement.style.display = "block";
+                setTimeout(() => {
+                    socketElement.style.transform = "scale(1.05)";
+                },10)
+                setTimeout(() => {
+                    socketElement.style.transform = "scale(1)";
+                },200)
+            })
+        }
+    }
+
+</script>
+
+
+<div templateBlock style="display: none">
+    <div socket-template class="socket" style="display: none" >
+        <h1 name>Kucoin_socket</h1>
+        <h2 masterEmail>masterEmail</h2>
+        <ul followerList>
+            <li follower style="display: none">follower</li>
+        </ul>
+    </div>
+</div>

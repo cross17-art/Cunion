@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div id="state">
+
+    </div>
+</head>
+
+
+
+<body>
+</body>
+</html>
+
+
+<style>
+
+    #state{
+        display: block;
+        border: 2px solid red;
+    }
+
+    .socket{
+        display: block;
+        border: 2px solid chartreuse;
+        background-color: #00E0C5;
+        width: 250px;
+        /*height: 250px;*/
+        padding: 10px 10px 10px 10px;
+        float: left;
+    }
+
+    h1{
+        font-size: 15px;
+    }
+
+    h2{
+        font-size: 10px;
+    }
+
+    h3{
+        font-size: 7px;
+    }
+</style>
+<script>
+    let timer = setInterval(() => {
+        fetch("https://cunion.io/client/copy_server_api/get_socket_state_system.php").then((response)=>{
+            return response.json();
+        }).then((data) => {
+            console.log(data);
+            ProceedSocketState(data);
+        })
+    }, 1000)
+
+    ProceedSocketState = (data) => {
+        document.querySelector("#state").innerHTML = data.id + " | " + data.date;
+        let socketStateArray = JSON.parse(data.state);
+        socketStateArray.forEach((socketState) => {
+            let socketElement = document.querySelector("[templateBlock] > [socket-template]").cloneNode(true);
+            socketElement.querySelector("[name]").innerHTML = socketState.name;
+            socketElement.querySelector("[masterEmail]").innerHTML = socketState.masterEmail;
+            socketElement.querySelector("[followerEmail]").innerHTML = socketState.followerEmail;
+            socketElement.querySelector("[state]").innerHTML = socketState.State;
+            document.querySelector("#state").appendChild(socketElement);
+            socketElement.style.display = "block";
+        })
+    }
+
+</script>
+
+
+<div templateBlock>
+    <div class="socket" style="display: none" socket-template>
+        <h1 name>SocketName</h1>
+        <h2 masterEmail>masterEmail</h2>
+        <h2 followerEmail>FollowerEmail</h2>
+        <h3 state>State</h3>
+        <ul coinList>
+            <li masterBalance>basterBalance</li>
+            <li followerBalance>followerBalance</li>
+        </ul>
+    </div>
+</div>
